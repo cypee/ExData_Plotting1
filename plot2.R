@@ -34,7 +34,7 @@ read_table<-function(file_name) {
     # read  10000 rows each time
     while (length(line_block <- readLines(con, n=nrows))>0) {
         subr <- grep("^[12]/2/2007", substr(line_block,1,8))
-        data_sub <- read.table(text=line_block[subr], sep = ";",stringsAsFactors=F, col.names =col_name)    ## Read feature name, activity label
+        data_sub <- read.table(text=line_block[subr], sep = ";",stringsAsFactors=F, col.names =col_name, na.strings="?")    ## Read feature name, activity label
         data<- rbind(data, data_sub)
     }
     close(con)
